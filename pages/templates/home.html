@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Ebay Trading {% endblock %}
+
+{% block content %}
+
+<!--  -->
+    <a class="btn btn-primary-dark" href="{% url 'session_id' %}">Session id</a>
+    <div>id session is: {{session_id}}</div>
+    {% if runame %}
+    <a target="_blank" href="https://signin.sandbox.ebay.com/ws/eBayISAPI.dll?SignIn&runame={{ runame }}&SessID={{session_id}}">Connect</a>
+    <a href="{% url 'token' %}">Connect</a>
+    {% endif %}
+    <div>{{ token }}</div>
+{% if not findbykeywords %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  {% for key, value in findbykeywords.items %}
+  <tbody>
+    <tr>
+      <th scope="row">{{key}}</th>
+      <td>{{value.Category}}</td>
+      <td><a href={{value.URL}}>{{value.Title}}</a></td>
+      <td>{{value.Price}}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock %}
