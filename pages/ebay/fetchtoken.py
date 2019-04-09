@@ -15,7 +15,7 @@ def get_session_id():
 def get_token():
     session_id = get_session_id
     request = {
-        "SessionID": session_id
+        "SessionID": str(session_id)
     }
     response = api.execute('FetchToken', request)
 
