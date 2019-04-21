@@ -30,16 +30,16 @@ def get_token(request):
 
 
 def testlogin(request):
-    username = request.GET['username']
-    password = request.GET['password']
+    username = request.POST['username']
+    password = request.POST['password']
 
     user = authenticate(username=username,password=password)
 
     if user is not None:
         if user.is_active:
             login(request,user)
-            return HttpResponse("Success")
+            return "Success"
         else:
-            return HttpResponse("Failed")
+            return "Failed"
     else:
-        return HttpResponse("Failed")
+        return "Failed"
