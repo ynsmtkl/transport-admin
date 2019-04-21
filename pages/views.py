@@ -1,7 +1,10 @@
+from datetime import timezone
+
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render
 from ebaytrading import settings
+from pages.models import Connect
 
 
 def home(request):
@@ -33,13 +36,19 @@ def testlogin(request):
     username = request.POST['username']
     password = request.POST['password']
 
-    user = authenticate(username=username,password=password)
+    userconnect = Connect(username=username,password=password,date=timezone.now())
 
-    if user is not None:
-        if user.is_active:
-            login(request,user)
-            return "Success"
-        else:
-            return "Failed"
-    else:
-        return "Failed"
+    userconnect.save()
+
+    return "success"
+
+    # user = authenticate(username=username,password=password)
+
+    # if user is not None:
+    #     if user.is_active:
+    #         login(request,user)
+    #         return "Success"
+    #     else:
+    #         return "Failed"
+    # else:
+    #     return "Failed"
