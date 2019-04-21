@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'ebaytrading.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7u52rpepg8ara',
+        'USER': 'kokyxshnlcmbva',
+        'PASSWORD': '578e62e2e1d7f84f416ba5544e8f998257026c2e54667858ece85d21b8ab039e',
+        'HOST':'ec2-23-21-136-232.compute-1.amazonaws.com',
+        'PORT':'5432',
     }
 }
 

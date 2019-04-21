@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
 from django.shortcuts import render
 from ebaytrading import settings
 
@@ -25,3 +27,19 @@ def get_session(request):
 def get_token(request):
     from .ebay.fetchtoken import get_token
     return render(request, "home.html", {"token": get_token})
+
+
+def testlogin(request):
+    username = request.GET['username']
+    password = request.GET['password']
+
+    user = authenticate(username=username,password=password)
+
+    if user is not None:
+        if user.is_active:
+            login(request,user)
+            return HttpResponse("Success")
+        else:
+            return HttpResponse("Failed")
+    else:
+        return HttpResponse("Failed")

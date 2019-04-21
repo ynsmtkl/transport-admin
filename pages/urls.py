@@ -9,4 +9,5 @@ urlpatterns = [
 
     url(r'^get_session_id$', views.get_session, name='session_id'),
     url(r'^get_token$', views.get_token, name='token'),
+    url('testlogin/', views.testlogin, name='testlogin'),
 ]
