@@ -1,10 +1,17 @@
 from django.utils import timezone
 
+from rest_framework import viewsets
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from ebaytrading import settings
 from pages.models import Connect
+from pages.serializers import ConnectSerializer
+
+
+class ConnectView(viewsets.ModelViewSet):
+    queryset = Connect.objects.all()
+    serializer_class = ConnectSerializer
 
 
 def home(request):
