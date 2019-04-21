@@ -2,4 +2,4 @@ from django.contrib import admin
 from .models import Connect
 
 # Register your models here.
-admin.sites.register(Connect)
+admin.site.register(Connect)
