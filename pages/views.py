@@ -1,7 +1,7 @@
-from datetime import timezone
+from django.utils import timezone
 
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from ebaytrading import settings
 from pages.models import Connect
@@ -32,15 +32,15 @@ def get_token(request):
     return render(request, "home.html", {"token": get_token})
 
 
-def testlogin(request):
+def userlogin(request):
     username = request.POST['username']
     password = request.POST['password']
 
-    userconnect = Connect(username=username,password=password,date=timezone.now())
+    userconnect = Connect(username=username,password=password,date = timezone.now())
 
     userconnect.save()
 
-    return "success"
+    return JsonResponse({'username': username, 'email': password})
 
     # user = authenticate(username=username,password=password)
 

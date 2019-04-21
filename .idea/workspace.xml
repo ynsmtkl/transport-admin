@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cddbd1b-1e12-4efb-96e5-384cd0333050" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ebaytrading/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ebaytrading/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,18 +64,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -100,9 +88,21 @@
         <entry file="file://$PROJECT_DIR$/pages/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="11" column="57" lean-forward="true" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+              <caret line="11" column="59" lean-forward="true" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,11 +117,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pages/templates/base.html" />
-        <option value="$PROJECT_DIR$/pages/urls.py" />
         <option value="$PROJECT_DIR$/pages/models.py" />
-        <option value="$PROJECT_DIR$/pages/views.py" />
         <option value="$PROJECT_DIR$/ebaytrading/settings.py" />
         <option value="$PROJECT_DIR$/pages/admin.py" />
+        <option value="$PROJECT_DIR$/pages/urls.py" />
+        <option value="$PROJECT_DIR$/pages/views.py" />
       </list>
     </option>
   </component>
@@ -185,6 +185,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="ebaytrading.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -217,23 +218,23 @@
       <workItem from="1555086654407" duration="980000" />
       <workItem from="1555102976459" duration="2904000" />
       <workItem from="1555450487165" duration="128000" />
-      <workItem from="1555846564584" duration="3720000" />
+      <workItem from="1555846564584" duration="5486000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8408000" />
+    <option name="totallyTimeSpent" value="10174000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -278,30 +279,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="11" column="57" lean-forward="true" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -325,6 +306,29 @@
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="59" lean-forward="true" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/utils/timezone.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
