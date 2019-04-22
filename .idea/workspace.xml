@@ -33,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/ebaytrading/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="186">
-              <caret line="139" column="62" selection-start-line="139" selection-start-column="62" selection-end-line="139" selection-end-column="62" />
+              <caret line="139" column="46" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -225,12 +225,12 @@
       <workItem from="1555869536901" duration="5732000" />
       <workItem from="1555914532969" duration="5495000" />
       <workItem from="1555928464954" duration="2786000" />
-      <workItem from="1555932558884" duration="7746000" />
+      <workItem from="1555932558884" duration="7964000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33587000" />
+    <option name="totallyTimeSpent" value="33805000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -347,7 +347,7 @@
     <entry file="file://$PROJECT_DIR$/ebaytrading/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
-          <caret line="139" column="62" selection-start-line="139" selection-start-column="62" selection-end-line="139" selection-end-column="62" />
+          <caret line="139" column="46" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="46" />
         </state>
       </provider>
     </entry>
