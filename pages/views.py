@@ -18,7 +18,7 @@ class ConnectView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         username = self.request.data.get("username")
-        password = self.request.data.get('password')
+        # password = self.request.data.get('password')
 
         # user = authenticate(username=username, password=password)
 
@@ -30,7 +30,7 @@ class ConnectView(viewsets.ModelViewSet):
         # connect = Connect(username=username, password=password, date=timezone.now())
         #
         # connect.save()
-        queryset = Connect.objects.filter(username=username, password=password)
+        queryset = Connect.objects.filter(username=username)
 
         return queryset
 
