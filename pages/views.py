@@ -15,7 +15,7 @@ class ConnectView(viewsets.ModelViewSet):
     serializer_class = ConnectSerializer
 
     def get_queryset(self):
-        username = self.kwargs['username']
+        username = self.request.POST.get('username')
 
         # password = self.request.data['password']
 
