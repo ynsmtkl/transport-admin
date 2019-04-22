@@ -5,4 +5,4 @@ from .models import Connect
 class ConnectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Connect
-        fields = ['id', 'username', 'password']
+        fields = ['username', 'password']
