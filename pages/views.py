@@ -24,7 +24,7 @@ class ConnectView(viewsets.ModelViewSet):
         # connect.save()
         queryset = Connect.objects.filter(username=username)
 
-        # return queryset
+        return queryset
 
 
 def home(request):
