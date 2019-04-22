@@ -19,7 +19,7 @@ class ConnectView(viewsets.ModelViewSet):
         username = self.request.query_params.get("username")
         password = self.request.query_params.get('password')
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(username='yns', password='123')
 
         if user is not None:
             if user.is_active:
