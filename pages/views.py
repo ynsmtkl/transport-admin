@@ -63,8 +63,8 @@ def get_token(request):
 
 
 def userlogin(request):
-    username = request.GET['username']
-    password = request.GET['password']
+    username = request.POST['username']
+    password = request.POST['password']
 
     # userconnect = Connect(username=username, password=password, date=timezone.now())
 
