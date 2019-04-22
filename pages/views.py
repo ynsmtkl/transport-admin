@@ -24,7 +24,7 @@ class ConnectView(viewsets.ModelViewSet):
         if user is not None:
             if user.is_active:
                 # login(self.request, user)
-                queryset = Connect.objects.filter(username=username)
+                queryset = Connect.objects.filter(username='yns')
             else:
                 queryset = Connect.objects.none()
         else:
