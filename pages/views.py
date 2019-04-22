@@ -72,7 +72,7 @@ def userlogin(request):
 
     # return JsonResponse({'username': username, 'email': password})
 
-    user = authenticate(username='yns',password='123')
+    user = authenticate(username='yns', password='123')
 
     if user is not None:
         if user.is_active:
