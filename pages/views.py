@@ -16,24 +16,24 @@ class ConnectView(viewsets.ModelViewSet):
     serializer_class = ConnectSerializer
 
     def get_queryset(self):
-        #username = self.request.query_params.get("username")
-        #password = self.request.query_params.get('password')
+        username = self.request.data.get("username")
+        # password = self.request.query_params.get('password')
 
-        user = authenticate(username='yns', password='123')
+        # user = authenticate(username='yns', password='123')
 
-        if user is not None:
-            if user.is_active:
-                # login(self.request, user)
-                queryset = Connect.objects.filter(username='yns')
-            else:
-                queryset = Connect.objects.none()
-        else:
-            queryset = Connect.objects.none()
+        # if user is not None:
+        #     if user.is_active:
+        #         # login(self.request, user)
+        #         queryset = Connect.objects.filter(username='yns')
+        #     else:
+        #         queryset = Connect.objects.none()
+        # else:
+        #     queryset = Connect.objects.none()
 
         # connect = Connect(username=username, password=password, date=timezone.now())
         #
         # connect.save()
-
+        queryset = Connect.objects.filter(username=username)
         return queryset
 
 
