@@ -12,6 +12,7 @@ from pages.serializers import ConnectSerializer
 
 class ConnectView(viewsets.ModelViewSet):
 
+    queryset = Connect.objects.all()
     serializer_class = ConnectSerializer
 
     def get_queryset(self):
