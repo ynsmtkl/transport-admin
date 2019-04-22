@@ -10,19 +10,19 @@ from pages.serializers import ConnectSerializer
 
 class ConnectView(viewsets.ModelViewSet):
 
-    queryset = Connect.objects.all()
+    queryset = Connect.objects.filter(username='yns')
     serializer_class = ConnectSerializer
 
-    def get_queryset(self):
+    # def get_queryset(self):
         # username = self.request. ['username']
         # password = self.request.data['password']
 
         # connect = Connect(username=username, password=password, date=timezone.now())
         #
         # connect.save()
-        queryset = Connect.objects.filter(username='yns')
+        # queryset = Connect.objects.filter(username='yns')
 
-        return queryset
+        # return queryset
 
 
 def home(request):
