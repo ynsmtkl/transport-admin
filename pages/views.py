@@ -14,13 +14,13 @@ class ConnectView(viewsets.ModelViewSet):
     serializer_class = ConnectSerializer
 
     def get_queryset(self):
-        username = self.request.data['username']
-        password = self.request.data['password']
+        # username = self.request. ['username']
+        # password = self.request.data['password']
 
         # connect = Connect(username=username, password=password, date=timezone.now())
         #
         # connect.save()
-        queryset = Connect.objects.filter(username=username, password=password)
+        queryset = Connect.objects.all()
 
         return queryset
 
