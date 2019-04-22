@@ -89,10 +89,11 @@ def userlogin(request):
 
 class UserLoginApiView(APIView):
     permission_classes = [AllowAny]
+    serializer_class = UserLoginSerializer
 
     def post(self, request, *args, **kwargs):
         data = request.data
-        serializer = UserLoginSerializer(data=data)
+
 
         if serializer.is_valid(raise_exception=True):
             new_data = serializer.data

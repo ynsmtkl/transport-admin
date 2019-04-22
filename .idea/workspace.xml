@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cddbd1b-1e12-4efb-96e5-384cd0333050" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/pages/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+            <state relative-caret-position="172">
+              <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -64,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+            <state relative-caret-position="322">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -98,8 +96,8 @@
         <option value="$PROJECT_DIR$/pages/models.py" />
         <option value="$PROJECT_DIR$/ebaytrading/settings.py" />
         <option value="$PROJECT_DIR$/pages/serializers.py" />
-        <option value="$PROJECT_DIR$/pages/views.py" />
         <option value="$PROJECT_DIR$/pages/urls.py" />
+        <option value="$PROJECT_DIR$/pages/views.py" />
       </list>
     </option>
   </component>
@@ -206,12 +204,12 @@
       <workItem from="1555869536901" duration="5732000" />
       <workItem from="1555914532969" duration="5495000" />
       <workItem from="1555928464954" duration="2786000" />
-      <workItem from="1555932558884" duration="18647000" />
+      <workItem from="1555932558884" duration="18917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44488000" />
+    <option name="totallyTimeSpent" value="44758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -312,22 +310,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/views.py">
+    <entry file="file://$PROJECT_DIR$/pages/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+        <state relative-caret-position="322">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/urls.py">
+    <entry file="file://$PROJECT_DIR$/pages/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        <state relative-caret-position="172">
+          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
