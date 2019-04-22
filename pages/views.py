@@ -12,24 +12,27 @@ from pages.serializers import ConnectSerializer
 
 
 class ConnectView(viewsets.ModelViewSet):
-
     queryset = Connect.objects.all()
     serializer_class = ConnectSerializer
 
     def get_queryset(self):
-        # username = self.request.query_params.get("username")
-        # password = self.request.data.get('password')
+        username = self.request.query_params.get("username")
+        password = self.request.data.get('password')
 
-        # user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
 
-        # if user is not None:
-        #     if user.is_active:
-        #         login(user)
+        if user is not None:
+            if user.is_active:
+                login(user)
+                queryset = Connect.objects.filter(username=username)
+            else:
+                queryset = Connect.objects.none()
+        else:
+            queryset = Connect.objects.none()
 
         # connect = Connect(username=username, password=password, date=timezone.now())
         #
         # connect.save()
-        queryset = Connect.objects.filter(username='yns')
 
         return queryset
 
@@ -42,7 +45,7 @@ def home(request):
 
 def about(request):
     from pages.namer import namer
-    return render(request, "about.html", {"aboutme":namer})
+    return render(request, "about.html", {"aboutme": namer})
 
 
 def contact(request):
@@ -63,7 +66,7 @@ def userlogin(request):
     username = request.GET['username']
     password = request.GET['password']
 
-    userconnect = Connect(username=username,password=password,date = timezone.now())
+    userconnect = Connect(username=username, password=password, date=timezone.now())
 
     userconnect.save()
 
