@@ -16,12 +16,12 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = {
+        fields = [
             'username',
             'password',
             'email',
             'token',
-        }
+        ]
 
         extra_kwargs = {
             "password": {
