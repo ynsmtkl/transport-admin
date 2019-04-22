@@ -63,8 +63,8 @@ def get_token(request):
 
 
 def userlogin(request):
-    username = request.POST['username']
-    password = request.POST['password']
+    username = request.GET['username']
+    password = request.GET['password']
 
     # userconnect = Connect(username=username, password=password, date=timezone.now())
 
@@ -72,7 +72,7 @@ def userlogin(request):
 
     # return JsonResponse({'username': username, 'email': password})
 
-    user = authenticate(username=username,password=password)
+    user = authenticate(username='yns',password='123')
 
     if user is not None:
         if user.is_active:
