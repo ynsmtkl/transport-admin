@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.utils import timezone
 
 from rest_framework import viewsets, status
@@ -17,8 +18,14 @@ class ConnectView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         username = self.request.data.get("username")
+        password = self.request.data.get('password')
 
-        # password = self.request.data['password']
+        user = authenticate(username=username,password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(user)
+
 
         # connect = Connect(username=username, password=password, date=timezone.now())
         #
