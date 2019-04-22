@@ -20,7 +20,7 @@ class ConnectView(viewsets.ModelViewSet):
         connect = Connect(username=username, password=password, date=timezone.now())
 
         connect.save()
-        queryset = Connect.objects.filter(username=username, password=password)
+        queryset = Connect.objects.all()
 
         return queryset
 
