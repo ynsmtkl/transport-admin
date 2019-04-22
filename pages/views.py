@@ -79,6 +79,6 @@ def userlogin(request):
             login(request, user)
             return JsonResponse({'message': 'success'})
         else:
-            return JsonResponse({'message': 'Failed'})
+            return JsonResponse({'message': 'Failed is not active'})
     else:
         return JsonResponse({'message': 'Failed'})
