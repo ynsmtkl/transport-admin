@@ -1,7 +1,7 @@
 from django.utils import timezone
 
 from rest_framework import viewsets
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from ebaytrading import settings
 from pages.models import Connect
@@ -13,20 +13,16 @@ class ConnectView(viewsets.ModelViewSet):
     queryset = Connect.objects.all()
     serializer_class = ConnectSerializer
 
-    def create(self, request, *args, **kwargs):
+    def get_queryset(self):
         username = self.request.query_params.get('username')
         password = self.request.query_params.get('password')
 
         connect = Connect(username=username, password=password, date=timezone.now())
 
         connect.save()
+        queryset = Connect.objects.filter(username=username, password=password)
 
-    # def get_queryset(self):
-    #
-    #
-    #     queryset = Connect.objects.filter(username=username, password=password)
-    #
-    #     return queryset
+        return queryset
 
 
 def home(request):
