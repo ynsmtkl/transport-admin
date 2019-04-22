@@ -16,8 +16,8 @@ class ConnectView(viewsets.ModelViewSet):
     serializer_class = ConnectSerializer
 
     def get_queryset(self):
-        username = self.request.query_params.get("username")
-        password = self.request.query_params.get('password')
+        #username = self.request.query_params.get("username")
+        #password = self.request.query_params.get('password')
 
         user = authenticate(username='yns', password='123')
 
@@ -66,19 +66,19 @@ def userlogin(request):
     username = request.GET['username']
     password = request.GET['password']
 
-    userconnect = Connect(username=username, password=password, date=timezone.now())
+    # userconnect = Connect(username=username, password=password, date=timezone.now())
 
-    userconnect.save()
+    # userconnect.save()
 
-    return JsonResponse({'username': username, 'email': password})
+    # return JsonResponse({'username': username, 'email': password})
 
-    # user = authenticate(username=username,password=password)
+    user = authenticate(username=username,password=password)
 
-    # if user is not None:
-    #     if user.is_active:
-    #         login(request,user)
-    #         return "Success"
-    #     else:
-    #         return "Failed"
-    # else:
-    #     return "Failed"
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return JsonResponse({'message': 'success'})
+        else:
+            return JsonResponse({'message': 'Failed'})
+    else:
+        return JsonResponse({'message': 'Failed'})
