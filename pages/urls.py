@@ -18,4 +18,6 @@ urlpatterns = [
     url(r'^get_token$', views.get_token, name='token'),
     url('userlogged/', views.userlogin, name='userlogged'),
 
+    url(r'^login$', views.UserLoginApiView.as_view(), name='login'),
+
 ]

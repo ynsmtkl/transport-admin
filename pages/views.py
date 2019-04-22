@@ -4,11 +4,14 @@ from django.utils import timezone
 from rest_framework import viewsets, status
 from django.http import JsonResponse
 from django.shortcuts import render
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from rest_framework.views import APIView
 
 from ebaytrading import settings
 from pages.models import Connect
-from pages.serializers import ConnectSerializer
+from pages.serializers import ConnectSerializer, UserLoginSerializer
 
 
 class ConnectView(viewsets.ModelViewSet):
@@ -82,3 +85,17 @@ def userlogin(request):
             return JsonResponse({'message': 'Failed is not active'})
     else:
         return JsonResponse({'message': 'Failed'})
+
+
+class UserLoginApiView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        serializer = UserLoginSerializer(data=data)
+
+        if serializer.is_valid(raise_exception=True):
+            new_data = serializer.data
+            return Response(new_data, status=HTTP_200_OK)
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
