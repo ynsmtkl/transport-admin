@@ -17,7 +17,7 @@ class ConnectView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         username = self.request.query_params.get("username")
-        password = self.request.data.get('password')
+        password = self.request.query_params.get('password')
 
         user = authenticate(username=username, password=password)
 
