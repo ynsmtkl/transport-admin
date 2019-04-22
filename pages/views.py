@@ -20,17 +20,17 @@ class ConnectView(viewsets.ModelViewSet):
         username = self.request.data.get("username")
         password = self.request.data.get('password')
 
-        user = authenticate(username=username,password=password)
+        # user = authenticate(username=username, password=password)
 
-        if user is not None:
-            if user.is_active:
-                login(user)
+        # if user is not None:
+        #     if user.is_active:
+        #         login(user)
 
 
         # connect = Connect(username=username, password=password, date=timezone.now())
         #
         # connect.save()
-        queryset = Connect.objects.filter(username=username)
+        queryset = Connect.objects.filter(username=username, password=password)
 
         return queryset
 
