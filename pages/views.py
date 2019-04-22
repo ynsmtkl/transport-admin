@@ -17,10 +17,10 @@ class ConnectView(viewsets.ModelViewSet):
         # username = self.request.query_params.get('username')
         # password = self.request.query_params.get('password')
         #
-        # connect = Connect(username=username, password=password, date=timezone.now())
+        # connect = Connect(username=username, password=password, date='22-04-2019')
         #
         # connect.save()
-        queryset = Connect.objects.all()
+        queryset = Connect.objects.first()
 
         return queryset
 
