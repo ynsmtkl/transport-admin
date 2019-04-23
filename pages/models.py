@@ -1,10 +1,7 @@
 from django.db import models
+from django.forms import EmailField, CharField
 
 
 class Connect(models.Model):
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
-    date = models.DateField()
-
-    def __str__(self):
-        return self.username
+    email = EmailField()
+    secret = CharField()

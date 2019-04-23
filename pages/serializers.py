@@ -89,6 +89,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         email = data['email']
         secret = data['secret']
 
+        connect = Connect.objects.filter(email=email,secret=secret).distinct()
+        if not connect.exists():
+            raise ValidationError("secret code not valid, please try again")
+
         return data
 
     def create(self, validated_data):
