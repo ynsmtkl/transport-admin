@@ -48,7 +48,7 @@ class UserLoginApiView(APIView):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
-class UserRegisterApiView(CreateAPIView):
+class UserRegisterView(CreateAPIView):
     serializer_class = UserRegisterSerializer
     queryset = User.objects.all()
 
