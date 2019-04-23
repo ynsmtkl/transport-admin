@@ -61,9 +61,11 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    token = serializers.CharField(allow_blank=True, read_only=True)
     username = serializers.CharField()
     email = serializers.EmailField()
+    password = serializers.CharField()
+    password_confirm = serializers.CharField()
+    secret = serializers.CharField()
 
     class Meta:
         model = User
@@ -72,41 +74,34 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'username',
             'password',
             'email',
+            'secret',
         ]
 
         extra_kwargs = {
-            "password":{
+            "password": {
                 "write_only": True
-            }
+            },
+            "secret": {
+                "write_only": True
+            },
         }
 
     def validate(self, data):
-        user_obj = None
-        email = data.get("email")
-        username = data.get("username")
-        password = data['password']
-        if not email and not username:
-            raise CustomValidation("username is required to login",
-                                   'username', status_code=status.HTTP_409_CONFLICT)
-        user = User.objects.filter(
-            Q(username=username)
-        ).distinct()
-        user = user.exclude(email__isnull=True, email__iexact='')
-        if user.exists() and user.count() == 1:
-            user_obj = user.first()
-        else:
-            raise CustomValidation("This username is not valid",
-                                   'username', status_code=status.HTTP_409_CONFLICT)
-
-        if user_obj:
-            if not user_obj.check_password(password):
-                raise CustomValidation("password is not correct, please try again!",
-                                       'password', status_code=status.HTTP_406_NOT_ACCEPTABLE)
-
-        data["token"] = "some random token"
-        data["id"] = user_obj.id
+        email = data['email']
+        secret = data['secret']
 
         return data
+
+    def create(self, validated_data):
+        username = validated_data['username']
+        password = validated_data['password']
+        email    = validated_data['email']
+
+        user = User(username=username, email=email)
+        user.set_password(password)
+        user.save()
+
+        return validated_data
 
 
 class CustomValidation(APIException):

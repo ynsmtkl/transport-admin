@@ -19,5 +19,6 @@ urlpatterns = [
     url('userlogged/', views.userlogin, name='userlogged'),
 
     url(r'^login$', views.UserLoginApiView.as_view(), name='login'),
+    url(r'^register$', views.UserRegisterSerializer.as_view(), name='register'),
 
 ]
