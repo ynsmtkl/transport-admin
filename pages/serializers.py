@@ -86,8 +86,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, data):
-        email = data['email']
-        secret = data['secret']
+        email = data.get('email')
+        secret = data.get('secret')
 
         connect = Connect.objects.filter(email=email,secret=secret).distinct()
         if not connect.exists():
