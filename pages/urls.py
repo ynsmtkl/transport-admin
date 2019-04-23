@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^get_token$', views.get_token, name='token'),
 
     url(r'^login$', views.UserLoginApiView.as_view(), name='login'),
-    url(r'^register$', views.UserRegisterSerializer.as_view(), name='register'),
+    url(r'^register$', views.UserRegisterSerializer, name='register'),
 ]
