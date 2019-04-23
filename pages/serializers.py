@@ -54,6 +54,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
                 raise ValidationError("password is not correct, please try again!")
 
         data["token"] = "some random token"
+        data["id"] = user_obj.id
 
         return data
 
