@@ -64,7 +64,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
     email = serializers.EmailField()
     password = serializers.CharField()
-    password_confirm = serializers.CharField()
     secret = serializers.CharField()
 
     class Meta:
