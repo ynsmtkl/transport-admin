@@ -91,7 +91,7 @@ class UserLoginApiView(APIView):
     permission_classes = [AllowAny]
     serializer_class = UserLoginSerializer
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         data = request.data
         serializer = UserLoginSerializer(data=data)
 
