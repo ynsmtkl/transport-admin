@@ -43,8 +43,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
             Q(email=email) |
             Q(username=username)
         ).distinct()
-
-        if user.exists() and user.count == 1:
+        user = user.exclude(email__isnull=True, email__iexact='')
+        if user.exists() and user.count() == 1:
             user_obj = user.first()
         else:
             raise ValidationError("This email or username is not valid")
@@ -54,9 +54,6 @@ class UserLoginSerializer(serializers.ModelSerializer):
                 raise ValidationError("password is not correct, please try again!")
 
         data["token"] = "some random token"
-        data["email"] = "ahmadali@gmail.com"
-        data["username"] = "ahmadali"
-        data["password"] = "ahmadaliqsqdqs"
 
         return data
 
