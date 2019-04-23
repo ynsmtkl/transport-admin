@@ -40,7 +40,6 @@ class UserLoginSerializer(serializers.ModelSerializer):
         if not email and not username:
             raise ValidationError("Email or Username is required to login")
         user = User.objects.filter(
-            Q(email=email) |
             Q(username=username)
         ).distinct()
         user = user.exclude(email__isnull=True, email__iexact='')
