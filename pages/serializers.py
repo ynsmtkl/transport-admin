@@ -32,32 +32,32 @@ class UserLoginSerializer(serializers.ModelSerializer):
             }
         }
 
-        def validate(self, data):
-            user_obj = None
-            email = data.get("email")
-            username = data.get("username")
-            password = data['password']
-            if not email and not username:
-                raise ValidationError("Email or Username is required to login")
-            user = User.objects.filter(
-                Q(email=email) |
-                Q(username=username)
-            ).distinct()
+    def validate(self, data):
+        user_obj = None
+        email = data.get("email")
+        username = data.get("username")
+        password = data['password']
+        if not email and not username:
+            raise ValidationError("Email or Username is required to login")
+        user = User.objects.filter(
+            Q(email=email) |
+            Q(username=username)
+        ).distinct()
 
-            if user.exists() and user.count == 1:
-                user_obj = user.first()
-            else:
-                raise ValidationError("This email or username is not valid")
+        if user.exists() and user.count == 1:
+            user_obj = user.first()
+        else:
+            raise ValidationError("This email or username is not valid")
 
-            if user_obj:
-                if not user_obj.check_password(password):
-                    raise ValidationError("password is not correct, please try again!")
+        if user_obj:
+            if not user_obj.check_password(password):
+                raise ValidationError("password is not correct, please try again!")
 
-            data["token"] = "some random token"
-            data["email"] = "ahmadali@gmail.com"
-            data["username"] = "ahmadali"
-            data["password"] = "ahmadaliqsqdqs"
+        data["token"] = "some random token"
+        data["email"] = "ahmadali@gmail.com"
+        data["username"] = "ahmadali"
+        data["password"] = "ahmadaliqsqdqs"
 
-            return data
+        return data
 
 
