@@ -63,14 +63,15 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class UserRegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
     email = serializers.EmailField()
-    password = serializers.CharField()
-    password_confirm = serializers.CharField()
-    secret = serializers.CharField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
 
     class Meta:
         model = User
         fields = [
             'id',
+            'first_name',
+            'last_name',
             'username',
             'password',
             'password_confirm',
