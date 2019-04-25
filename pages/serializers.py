@@ -15,7 +15,8 @@ class ConnectSerializer(serializers.ModelSerializer):
 
 class UserLoginSerializer(serializers.ModelSerializer):
     token = serializers.CharField(allow_blank=True, read_only=True)
-    username = serializers.CharField()
+    username = serializers.CharField(required=True)
+    password = serializers.CharField(required=True, read_only=True)
     email = serializers.EmailField(allow_blank=True, read_only=True)
 
     class Meta:
@@ -27,12 +28,6 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'email',
             'token',
         ]
-
-        extra_kwargs = {
-            "password":{
-                "write_only": True
-            }
-        }
 
     def validate(self, data):
         user_obj = None
@@ -55,6 +50,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
         data["token"] = "some random token"
         data["id"] = user_obj.id
+        data["email"] = user_obj.email
 
         return data
 
