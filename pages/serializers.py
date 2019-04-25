@@ -73,9 +73,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'id',
             'username',
             'password',
+            'password_confirm',
             'email',
             'secret',
-            'password_confirm',
         ]
 
         extra_kwargs = {
@@ -91,12 +91,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, data):
-        email = data.get('email')
-        secret = data.get('secret')
-
-        connect = Connect.objects.filter(email=email,secret=secret).distinct()
-        if not connect.exists():
-            raise ValidationError("secret code not valid, please try again")
 
         return data
 
