@@ -16,6 +16,7 @@ class ConnectSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.ModelSerializer):
     token = serializers.CharField(allow_blank=True, read_only=True)
     username = serializers.CharField()
+    email = serializers.EmailField(allow_blank=True, read_only=True)
 
     class Meta:
         model = User
@@ -54,7 +55,6 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
         data["token"] = "some random token"
         data["id"] = user_obj.id
-        data["email"] = user_obj.email
 
         return data
 
