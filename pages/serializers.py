@@ -61,6 +61,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
     username = serializers.CharField()
     email = serializers.EmailField()
     first_name = serializers.CharField()
