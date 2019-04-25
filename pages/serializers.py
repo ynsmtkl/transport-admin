@@ -66,6 +66,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField()
     last_name = serializers.CharField()
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+    password_confirm = serializers.CharField(style={'input_type': 'password'}, write_only=True)
     secret = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
