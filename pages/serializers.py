@@ -73,7 +73,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'username',
             'password',
             'email',
-            'secret',
         ]
 
         extra_kwargs = {
