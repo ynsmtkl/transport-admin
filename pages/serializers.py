@@ -16,7 +16,6 @@ class ConnectSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.ModelSerializer):
     token = serializers.CharField(allow_blank=True, read_only=True)
     username = serializers.CharField()
-    email = serializers.EmailField()
 
     class Meta:
         model = User
@@ -36,19 +35,18 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         user_obj = None
-        email = data.get("email")
         username = data.get("username")
         password = data['password']
-        if not email and not username:
-            raise ValidationError("Email or Username is required to login")
+        if not password and not username:
+            raise ValidationError("Password and Username are required to login")
         user = User.objects.filter(
             Q(username=username)
         ).distinct()
-        user = user.exclude(email__isnull=True, email__iexact='')
+
         if user.exists() and user.count() == 1:
             user_obj = user.first()
         else:
-            raise ValidationError("This email or username is not valid")
+            raise ValidationError("This username is not valid")
 
         if user_obj:
             if not user_obj.check_password(password):
@@ -56,6 +54,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
         data["token"] = "some random token"
         data["id"] = user_obj.id
+        data["email"] = user_obj.email
 
         return data
 
