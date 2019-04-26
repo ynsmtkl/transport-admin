@@ -12,7 +12,4 @@ urlpatterns = [
     url(r'^get_session_id$', views.get_session, name='session_id'),
     url(r'^get_token$', views.get_token, name='token'),
 
-    url(r'^login$', views.UserLoginApiView.as_view(), name='login'),
-    url(r'^register$', views.UserRegisterApiView.as_view(), name='register'),
-
 ]
