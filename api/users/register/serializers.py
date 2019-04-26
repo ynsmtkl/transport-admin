@@ -30,31 +30,31 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'secret',
         ]
 
-    def validate_password_confirm(self, value):
-        data = self.initial_data
-        password = data.get('password')
-        password_confirm = value
+    # def validate_password_confirm(self, value):
+    #     data = self.initial_data
+    #     password = data.get('password')
+    #     password_confirm = value
+    #
+    #     if password != password_confirm:
+    #         raise ValidationError("The passwords doesn't match, please confirm your password")
+    #
+    #     return value
 
-        if password != password_confirm:
-            raise ValidationError("The passwords doesn't match, please confirm your password")
+    # def validate_username(self, value):
+    #     user = User.objects.filter(username=value)
+    #
+    #     if user.exists():
+    #         raise ValidationError("An account is already saved with this username")
+    #
+    #     return value
 
-        return value
-
-    def validate_username(self, value):
-        user = User.objects.filter(username=value)
-
-        if user.exists():
-            raise ValidationError("An account is already saved with this username")
-
-        return value
-
-    def validate_email(self, value):
-        user = User.objects.filter(email=value)
-
-        if user.exists():
-            raise ValidationError("An account is already saved with this email")
-
-        return value
+    # def validate_email(self, value):
+    #     user = User.objects.filter(email=value)
+    #
+    #     if user.exists():
+    #         raise ValidationError("An account is already saved with this email")
+    #
+    #     return value
 
     def validate(self, data):
         self.email = data.get('email')
