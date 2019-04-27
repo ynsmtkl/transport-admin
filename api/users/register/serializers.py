@@ -69,7 +69,7 @@ class SecretValidationSerializer(serializers.ModelSerializer):
         connect = Connect.objects.filter(email=email,secret=secret)
 
         if not connect.exists():
-            raise ValidationError("This secret is not valid, please try again")
+            raise ValidationError("Secret or email not valid, please try again")
 
         user = User.objects.filter(email=email)
         if user.exists():
