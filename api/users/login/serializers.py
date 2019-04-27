@@ -6,20 +6,28 @@ from rest_framework.exceptions import ValidationError, APIException
 
 
 class UserLoginSerializer(serializers.ModelSerializer):
-    token = serializers.CharField(allow_blank=True, read_only=True)
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True, write_only=True)
     email = serializers.EmailField(allow_blank=True, read_only=True)
 
     class Meta:
         model = User
-        fields = [
+        fields = (
             'id',
             'username',
+            'first_name',
+            'last_name',
             'password',
             'email',
-            'token',
-        ]
+        )
+        extra_kwargs = {
+            'first_name': {
+                    'read_only': True
+                },
+            'last_name':{
+                    'read_only': True
+                }
+        }
 
     def validate(self, data):
         user_obj = None
@@ -40,9 +48,10 @@ class UserLoginSerializer(serializers.ModelSerializer):
             if not user_obj.check_password(password):
                 raise ValidationError("password is not correct, please try again!")
 
-        data["token"] = "some random token"
         data["id"] = user_obj.id
         data["email"] = user_obj.email
+        data["first_name"] = user_obj.first_name
+        data["last_name"] = user_obj.last_name
 
         return data
 
