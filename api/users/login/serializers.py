@@ -22,11 +22,11 @@ class UserLoginSerializer(serializers.ModelSerializer):
         )
         extra_kwargs = {
             'first_name': {
-                    'read_only': True
-                },
+                'read_only': True
+            },
             'last_name':{
-                    'read_only': True
-                }
+                'read_only': True
+            }
         }
 
     def validate(self, data):
@@ -41,6 +41,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
         if user.exists() and user.count() == 1:
             user_obj = user.first()
+            if not user_obj.is_active:
+                raise ValidationError("This account is not active")
         else:
             raise ValidationError("This username is not valid")
 
@@ -52,6 +54,40 @@ class UserLoginSerializer(serializers.ModelSerializer):
         data["email"] = user_obj.email
         data["first_name"] = user_obj.first_name
         data["last_name"] = user_obj.last_name
+
+        return data
+
+
+class VerifyUserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField()
+
+    class Meta:
+        model  = User
+        fields = (
+            'id',
+            'username',
+            'email'
+        )
+
+        extra_kwargs = {
+            'email': {
+                'read_only': True
+            }
+        }
+
+    def validate(self, data):
+        username = data.get('username')
+        user = User.objects.filter(username=username)
+
+        if not user.exists():
+            raise ValidationError("This account doesn't exist!")
+
+        user_obj = user.first()
+        if not user_obj.is_active:
+            raise ValidationError("This account is not active, please contact your admin")
+
+        data['id'] = user_obj.id
+        data['email'] = user_obj.email
 
         return data
 
