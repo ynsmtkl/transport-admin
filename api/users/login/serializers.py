@@ -59,7 +59,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
 
 class VerifyUserSerializer(serializers.ModelSerializer):
-    username = serializers.CharField()
+    username = serializers.CharField(required=False)
 
     class Meta:
         model  = User
