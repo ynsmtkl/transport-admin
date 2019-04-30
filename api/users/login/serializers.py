@@ -4,11 +4,14 @@ from django.utils.encoding import force_text
 from rest_framework import serializers, status
 from rest_framework.exceptions import ValidationError, APIException
 
+from api.users.models import Connect
+
 
 class UserLoginSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True, write_only=True)
     email = serializers.EmailField(allow_blank=True, read_only=True)
+    user_type = serializers.CharField(allow_blank=True, read_only=True)
 
     class Meta:
         model = User
@@ -19,6 +22,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'last_name',
             'password',
             'email',
+            'user_type',
         )
         extra_kwargs = {
             'first_name': {
@@ -31,6 +35,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         user_obj = None
+        connect_obj = None
+
         username = data.get("username")
         password = data['password']
         if not password and not username:
@@ -48,12 +54,19 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
         if user_obj:
             if not user_obj.check_password(password):
-                raise ValidationError("password is not correct, please try again!")
+                raise ValidationError("Password is not correct, please try again!")
+
+            # Looking for the type of the user
+            connect = Connect.objects.filter(email=user_obj.email)
+            if not connect.exists():
+                raise ValidationError("We can't found the type of this account, please contact your admin")
+            connect_obj = connect.first()
 
         data["id"] = user_obj.id
         data["email"] = user_obj.email
         data["first_name"] = user_obj.first_name
         data["last_name"] = user_obj.last_name
+        data["user_type"] = connect_obj.userType
 
         return data
 
