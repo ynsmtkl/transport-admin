@@ -8,10 +8,12 @@ class UserType(models.Model):
         return self.type
 
 
-class Connect(models.Model):
+class UserConnect(models.Model):
     email = models.EmailField()
     secret = models.CharField(max_length=20)
     userType = models.ForeignKey(UserType, on_delete=models.CASCADE)
+    date_star = models.DateField()
+    date_end = models.DateField()
 
     def __str__(self):
         return self.email
