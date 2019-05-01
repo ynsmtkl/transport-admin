@@ -4,7 +4,7 @@ from django.utils.encoding import force_text
 from rest_framework import serializers, status
 from rest_framework.exceptions import ValidationError, APIException
 
-from api.users.models import Connect
+from api.users.models import UserConnect
 
 
 class UserLoginSerializer(serializers.ModelSerializer):
@@ -57,7 +57,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
                 raise ValidationError("Password is not correct, please try again!")
 
             # Looking for the type of the user
-            connect = Connect.objects.filter(email=user_obj.email)
+            connect = UserConnect.objects.filter(email=user_obj.email)
             if not connect.exists():
                 raise ValidationError("We can't found the type of this account, please contact your admin")
             connect_obj = connect.first()

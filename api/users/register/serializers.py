@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from api.users.models import Connect
+from api.users.models import UserConnect
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -59,14 +59,14 @@ class SecretValidationSerializer(serializers.ModelSerializer):
     secret = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
-        model = Connect
+        model = UserConnect
         fields = ['email', 'secret', 'type']
 
     def validate(self, data):
         email = data.get('email')
         secret = data.get('secret')
 
-        connect = Connect.objects.filter(email=email,secret=secret)
+        connect = UserConnect.objects.filter(email=email, secret=secret)
 
         if not connect.exists():
             raise ValidationError("Secret or email not valid, please try again")
