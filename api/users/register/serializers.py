@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -70,6 +72,13 @@ class SecretValidationSerializer(serializers.ModelSerializer):
 
         if not connect.exists():
             raise ValidationError("Secret or email not valid, please try again")
+
+        connect_obj = connect.first()
+        date_start = datetime(connect_obj.date_star.year, connect_obj.date_star.month, connect_obj.date_star.day)
+        date_end = datetime(connect_obj.date_end.year, connect_obj.date_end.month, connect_obj.date_end.day)
+
+        if date_start > datetime.now() or date_end < datetime.now():
+            raise ValidationError("This account is out of date, please contact your admin")
 
         user = User.objects.filter(email=email)
         if user.exists():

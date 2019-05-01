@@ -1,8 +1,8 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
-from django.db.models import Q
-from django.utils.encoding import force_text
-from rest_framework import serializers, status
-from rest_framework.exceptions import ValidationError, APIException
+from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from api.users.models import UserConnect
 
@@ -41,9 +41,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
         password = data['password']
         if not password and not username:
             raise ValidationError("Password and Username are required to login")
-        user = User.objects.filter(
-            Q(username=username)
-        ).distinct()
+        user = User.objects.filter(username=username).distinct()
 
         if user.exists() and user.count() == 1:
             user_obj = user.first()
@@ -61,6 +59,12 @@ class UserLoginSerializer(serializers.ModelSerializer):
             if not connect.exists():
                 raise ValidationError("We can't found the type of this account, please contact your admin")
             connect_obj = connect.first()
+
+            date_start = datetime(connect_obj.date_star.year, connect_obj.date_star.month, connect_obj.date_star.day)
+            date_end = datetime(connect_obj.date_end.year, connect_obj.date_end.month, connect_obj.date_end.day)
+
+            if  date_start > datetime.now() or date_end < datetime.now():
+                raise ValidationError("This account is out of date, please contact your admin")
 
         data["id"] = user_obj.id
         data["email"] = user_obj.email
@@ -93,11 +97,21 @@ class VerifyUserSerializer(serializers.ModelSerializer):
         user = User.objects.filter(username=username)
 
         if not user.exists():
-            raise ValidationError("This account doesn't exist!")
+            raise ValidationError("This account was removed, please contact your admin!")
 
         user_obj = user.first()
         if not user_obj.is_active:
             raise ValidationError("This account is not active, please contact your admin")
+
+        connect = UserConnect.objects.filter(email=user_obj.email)
+        if connect.exists():
+            connect_obj = connect.first()
+
+            date_start = datetime(connect_obj.date_star.year, connect_obj.date_star.month, connect_obj.date_star.day)
+            date_end = datetime(connect_obj.date_end.year, connect_obj.date_end.month, connect_obj.date_end.day)
+
+            if date_start > datetime.now() or date_end < datetime.now():
+                raise ValidationError("This account is out of date, please contact your admin")
 
         data['id'] = user_obj.id
         data['email'] = user_obj.email
