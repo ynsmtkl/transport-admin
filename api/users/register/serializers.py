@@ -62,7 +62,7 @@ class SecretValidationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserConnect
-        fields = ['email', 'secret', 'type']
+        fields = ['email', 'secret']
 
     def validate(self, data):
         email = data.get('email')
