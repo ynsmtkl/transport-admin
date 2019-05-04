@@ -74,10 +74,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
                 bus = Bus.objects.filter(student__user_connect__email=connect_obj.email)
                 if not bus.exists():
                     raise ValidationError("No affected driver for this student")
-            else:
-                raise ValidationError("This user is not parent")
 
-            bus_obj = bus.first()
+                bus_obj = bus.first()
 
         data["id"] = user_obj.id
         data["email"] = user_obj.email
