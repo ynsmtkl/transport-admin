@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'api.users',
     'api.users.login',
     'api.users.register',
+    'api.driving',
 
 ]
 

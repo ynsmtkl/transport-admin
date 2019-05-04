@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
+from api.driving.models import Bus
 from api.users.models import UserConnect
 
 
@@ -12,6 +13,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=True, write_only=True)
     email = serializers.EmailField(allow_blank=True, read_only=True)
     user_type = serializers.CharField(allow_blank=True, read_only=True)
+    driver = serializers.EmailField(allow_blank=True, read_only=True)
 
     class Meta:
         model = User
@@ -23,6 +25,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'password',
             'email',
             'user_type',
+            'driver',
         )
         extra_kwargs = {
             'first_name': {
@@ -36,6 +39,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user_obj = None
         connect_obj = None
+        bus_obj = None
 
         username = data.get("username")
         password = data['password']
@@ -43,7 +47,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             raise ValidationError("Password and Username are required to login")
         user = User.objects.filter(username=username).distinct()
 
-        if user.exists() and user.count() == 1:
+        if user.exists():
             user_obj = user.first()
             if not user_obj.is_active:
                 raise ValidationError("This account is not active")
@@ -63,14 +67,24 @@ class UserLoginSerializer(serializers.ModelSerializer):
             date_start = datetime(connect_obj.date_star.year, connect_obj.date_star.month, connect_obj.date_star.day)
             date_end = datetime(connect_obj.date_end.year, connect_obj.date_end.month, connect_obj.date_end.day)
 
-            if  date_start > datetime.now() or date_end < datetime.now():
+            if date_start > datetime.now() or date_end < datetime.now():
                 raise ValidationError("This account is out of date, please contact your admin")
+
+            if connect_obj.userType.type == "Parent":
+                bus = Bus.objects.filter(student__user_connect__email=connect_obj.email)
+                if not bus.exists():
+                    raise ValidationError("No affected driver for this student")
+            else:
+                raise ValidationError("This user is not parent")
+
+            bus_obj = bus.first()
 
         data["id"] = user_obj.id
         data["email"] = user_obj.email
         data["first_name"] = user_obj.first_name
         data["last_name"] = user_obj.last_name
         data["user_type"] = connect_obj.userType
+        data["driver"] = bus_obj.driver
 
         return data
 
