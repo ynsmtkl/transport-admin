@@ -76,13 +76,13 @@ class UserLoginSerializer(serializers.ModelSerializer):
                     raise ValidationError("No affected driver for this student")
 
                 bus_obj = bus.first()
+                data["driver"] = bus_obj.driver
 
         data["id"] = user_obj.id
         data["email"] = user_obj.email
         data["first_name"] = user_obj.first_name
         data["last_name"] = user_obj.last_name
         data["user_type"] = connect_obj.userType
-        data["driver"] = bus_obj.driver
 
         return data
 
