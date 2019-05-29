@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="d3u3om3nud6lf1@ec2-54-225-242-183.compute-1.amazonaws.com [2]" uuid="3a42d15d-50e6-48db-ab01-57a635193a4b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-54-225-242-183.compute-1.amazonaws.com:5432/d3u3om3nud6lf1</jdbc-url>
+    </data-source>
+  </component>
+</project>

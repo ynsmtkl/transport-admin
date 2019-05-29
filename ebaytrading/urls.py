@@ -7,4 +7,6 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('', include('api.users.login.urls')),
     path('', include('api.users.register.urls')),
+    path('', include('api.driving.profile.urls')),
+    path('', include('api.driving.rapport.urls')),
 ]
